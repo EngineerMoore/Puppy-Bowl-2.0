@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 
 import Homepage from "./components/Homepage";
-import TeamOne from "./components/TeamOne";
-import TeamTwo from "./components/TeamTwo";
+import Ruff from "./components/Ruff";
+import Fluff from "./components/Fluff";
 
 const App = () => {
 
@@ -12,8 +12,8 @@ const App = () => {
       <h2>Teams</h2>
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/team-one" element={<TeamOne />} />
-        <Route path="/team-two" element={<TeamTwo />} />
+        <Route path="/ruff" element={<Ruff />} />
+        <Route path="/fluff" element={<Fluff />} />
       </Routes>      
     </>
   )
