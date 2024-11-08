@@ -1,8 +1,37 @@
-const TeamTwo = () => {
+import { useEffect, useState } from "react"
+
+const TeamTwo = ({teamTwo}) => {
+  const [benchedPlayers, setBenchedPlayers] = useState([]);
+  const [fieldPlayers, setFieldPlayers] = useState([]);
+  useEffect(()=>{
+    console.log(teamTwo);
+    const teamPlayers = teamTwo.players;
+    const getBenchPlayers = () => {
+      console.log(teamPlayers);
+      const temp = teamPlayers.filter( (player) => {
+        console.log(player.status);
+        if (player.status === "bench")
+        { return player }
+      })
+      setBenchedPlayers(temp)
+    }
+    const getFieldPlayers = () => {
+      console.log(teamPlayers);
+      const fieldPlayersFilter = teamPlayers.filter( (player) => {
+        if (player.status === "field")
+        { return player }
+      })
+      setFieldPlayers(fieldPlayersFilter)
+    }
+    getBenchPlayers();
+    getFieldPlayers();
+
+  },[])
   return (
     <>
+    {<h2>{teamTwo.name}</h2>}
       <section>
-        <h2>Lead Competitors</h2>
+        <h3>Lead Competitors</h3>
         <table>
           <thead>
             <tr>
@@ -12,12 +41,18 @@ const TeamTwo = () => {
             </tr>
           </thead>
           <tbody>
-            <tr></tr>
+        {fieldPlayers.map((player) => {
+         return <tr key={player.id}>
+          <td>{player.id}</td>
+          <td>{player.name}</td>
+          <td>{player.breed}</td>
+          </tr>
+        })}
           </tbody>
         </table>
       </section>
   <section>
-    <h2>Elite Reinforcement</h2>
+    <h3>Elite Reinforcement</h3>
     <table>
       <thead>
         <tr>
@@ -27,7 +62,13 @@ const TeamTwo = () => {
         </tr>
       </thead>
       <tbody>
-        <tr></tr>
+        {benchedPlayers.map((player)=>{
+        return <tr key={player.id}>
+          <td>{player.id}</td>
+          <td>{player.name}</td>
+          <td>{player.breed}</td>
+        </tr>
+        })}
       </tbody>
     </table>
   </section>
