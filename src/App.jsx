@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import Homepage from "./components/Homepage";
 import Ruff from "./components/Ruff";
 import Fluff from "./components/Fluff";
+import SinglePlayer from "./components/SinglePlayer";
 
 const App = () => {
   const [teams, setTeams] = useState([]);
@@ -37,13 +38,12 @@ const App = () => {
   return (
     <>
       <h1>Puppy Bowl 2.0</h1>
-      <NavBar />
+      <NavBar teams={teams}/>
       <Routes>
         <Route path="/" element={<Homepage teams={teams}/>} />
         <Route path="/ruff" element={<Ruff teamOne={teamOne}/>} />
         <Route path="/fluff" element={<Fluff teamTwo={teamTwo}/>} />
-        <Route path="/ruff/:player" element/>
-        <Route path="/fluff/:player" element/>
+        <Route path="/players/:player" element={<SinglePlayer teamOne={teamOne} teamTwo={teamTwo}/>} />
       </Routes>      
     </>
   )
